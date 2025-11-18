@@ -1,9 +1,18 @@
-Document Question-Answering System
-Overview
+🛠️ Badges 
+
+![Python Version](https://img.shields.io/badge/Python-3.9%2B-blue)
+![LangChain](https://img.shields.io/badge/LangChain-RAG-orange)
+![FAISS](https://img.shields.io/badge/FAISS-Vector%20Search-green)
+![License](https://img.shields.io/badge/License-MIT-lightgrey)
+
+
+
+#Document Question-Answering System
+##Overview
 
 This project implements an end-to-end document question-answering pipeline. It uses LangChain, vector embeddings, FAISS, and LLMs to answer questions based on the content of PDFs or other text documents.
 
-Features
+##Features
 
 Automatic PDF extraction and smart text chunking
 
@@ -15,8 +24,8 @@ Simple script-based interface (run inside Visual Studio Code)
 
 Modular structure, easy to extend and customize
 
-Installation
-1. Clone the repository
+##Installation
+'''1. Clone the repository
 git clone https://github.com/AbiramiSubramaniam2222/document-qa.git
 cd document-qa
 
@@ -65,13 +74,78 @@ Scanned PDFs require OCR before use.
 
 Retrieval accuracy depends on embedding quality.
 
-Folder Structure
+## Folder Structure
+
+```
 document-qa/
-├── app.py                 # Main application entry point (optional)
-├── document_qa_demo.py    # Demo script run inside VS Code
-├── data/                  # Raw documents (you load PDFs from your local system)
-├── embeddings/            # FAISS index files
-├── requirements.txt       # Dependencies
-├── README.md              # Documentation
-├── venv/                  # Virtual environment
-└── .gitignore  
+├── app.py                # Main application entry point (optional)
+├── document_qa_demo.py   # Demo script you run inside VS Code
+├── data/                 # Raw documents (you load PDFs from your local system)
+├── embeddings/           # FAISS vector index files
+├── requirements.txt      # Python dependencies
+├── README.md             # Project documentation
+├── venv/                 # Virtual environment (excluded from Git)
+└── .gitignore            # Git ignore rules
+```
+
+'''📌 Architecture Overview
+                  ┌────────────────────┐
+                  │      PDF File      │
+                  └─────────┬──────────┘
+                            │ Extract text
+                            ▼
+                  ┌────────────────────┐
+                  │   Text Chunking    │
+                  │ (chunk + overlap)  │
+                  └─────────┬──────────┘
+                            │ Embed chunks
+                            ▼
+                  ┌────────────────────┐
+                  │   Embedding Model  │
+                  └─────────┬──────────┘
+                            │ Store vectors
+                            ▼
+                  ┌────────────────────┐
+                  │     FAISS Index     │
+                  └─────────┬──────────┘
+                            │ Retrieve top-K
+                            ▼
+                  ┌────────────────────┐
+                  │ Retrieved Context   │
+                  └─────────┬──────────┘
+                            │ Send to LLM
+                            ▼
+                  ┌────────────────────┐
+                  │     LLM Answer     │
+                  └────────────────────┘
+                  '''
+                  
+'''                  
+🔁 RAG Workflow Diagram (Simple & Clear)
+
+User Question
+      │
+      ▼
+Semantic Search (FAISS)
+      │
+      ▼
+Retrieve Relevant Chunks
+      │
+      ▼
+LLM + Retrieved Context
+      │
+      ▼
+Final Grounded Answer
+'''
+
+##📝 Example Input / Output
+Input
+
+PDF: Insurance Claim Policy Document
+User Question:
+“Is accidental damage covered under this policy?”
+
+Output
+Yes, accidental damage is covered. According to Section 2.1 of the policy,
+the plan includes coverage for accidental physical damage to the insured item,
+as long as the claim is filed within 30 days of the incident.
