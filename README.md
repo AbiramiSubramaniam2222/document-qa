@@ -88,7 +88,7 @@ document-qa/
 └── .gitignore            # Git ignore rules
 ```
 
-'''📌 Architecture Overview
+```📌 Architecture Overview
                   ┌────────────────────┐
                   │      PDF File      │
                   └─────────┬──────────┘
@@ -118,9 +118,9 @@ document-qa/
                   ┌────────────────────┐
                   │     LLM Answer     │
                   └────────────────────┘
-                  '''
+```
                   
-'''                  
+```                
 🔁 RAG Workflow Diagram (Simple & Clear)
 
 User Question
@@ -136,7 +136,7 @@ LLM + Retrieved Context
       │
       ▼
 Final Grounded Answer
-'''
+```
 
 ##📝 Example Input / Output
 Input
