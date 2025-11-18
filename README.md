@@ -7,25 +7,60 @@
 
 
 
-#Document Question-Answering System
-##Overview
+📄 Document Question-Answering System
+🎯 HR-Friendly Summary
 
-This project implements an end-to-end document question-answering pipeline. It uses LangChain, vector embeddings, FAISS, and LLMs to answer questions based on the content of PDFs or other text documents.
+This project is an end-to-end Document Q&A system that reads PDF documents, breaks them into meaningful chunks, stores them as vector embeddings using FAISS, and answers user questions using a Retrieval-Augmented Generation pipeline.
+It demonstrates practical skills in LangChain, embeddings, vector search, LLM integration, and building modular AI pipelines — exactly the kind of work done in real industry RAG systems.
 
-##Features
+⚙️ Tech Stack
+
+Languages & Frameworks
+
+Python 3.9+
+
+LangChain
+
+FAISS
+
+OpenAI / LLM APIs
+
+Libraries
+
+PyPDF2 / pdfplumber (PDF extraction)
+
+SentenceTransformers / Embeddings
+
+Dotenv
+
+YAML configs
+
+Tools
+
+VS Code
+
+Virtual Environments (venv)
+
+Git & GitHub
+
+📌 Overview
+
+This project implements an end-to-end document question-answering pipeline. It uses LangChain, vector embeddings, FAISS, and LLMs to answer questions based on the content of PDFs or text documents.
+
+⚙️ Features
 
 Automatic PDF extraction and smart text chunking
 
 FAISS-based vector embeddings for fast similarity search
 
-Retrieval-Augmented Generation (RAG) for accurate answers
+Retrieval-Augmented Generation (RAG)
 
-Simple script-based interface (run inside Visual Studio Code)
+Clean and simple script-based interface
 
-Modular structure, easy to extend and customize
+Modular design, easy to extend
 
-##Installation
-'''1. Clone the repository
+🚀 Installation
+1. Clone the repository
 git clone https://github.com/AbiramiSubramaniam2222/document-qa.git
 cd document-qa
 
@@ -36,116 +71,119 @@ source venv/bin/activate
 3. Install dependencies
 pip install -r requirements.txt
 
-Configuration
+🔒 Configuration
 
-Use a .env file to store environment variables like API keys, model names, and file paths.
+API keys stored in .env
 
-The system uses a parameter called max_size_tokens, which controls how much text is passed to the LLM per query.
+max_size_tokens = 1000 (controls text passed to LLM)
 
-In this project, it's set to 1000 tokens to avoid hitting model context limits while still returning good answers.
+Chunking, model configs adjustable via YAML
 
-You can adjust chunking settings, embedding model, and other configs in config.yaml or similar files.
+▶️ Usage
 
-Usage
-
-Since this project is run directly inside Visual Studio Code:
-
-Run the script from VS Code’s terminal:
+Run directly inside VS Code terminal:
 
 python3 document_qa_demo.py
 
-Steps
+How it works
 
-Load a PDF from your local system (your script reads the file directly).
+Load PDF
 
-Ask a question in the terminal or script input.
+Ask a question
 
-The system retrieves relevant chunks using FAISS.
+Retrieve relevant chunks via FAISS
 
-The LLM generates the final answer based on retrieved context.
+LLM generates final answer
 
-Limitations
+⚠️ Limitations
 
-max_size_tokens = 1000 limits how much context the LLM can see at once.
+Context window limited to 1000 tokens
 
-Chunking strategy affects answer accuracy for large or dense PDFs.
+Scanned PDFs need OCR
 
-Scanned PDFs require OCR before use.
+Chunking affects accuracy
 
-Retrieval accuracy depends on embedding quality.
-
-## Folder Structure
-
-```
+📁 Folder Structure
 document-qa/
 ├── app.py                # Main application entry point (optional)
-├── document_qa_demo.py   # Demo script you run inside VS Code
-├── data/                 # Raw documents (you load PDFs from your local system)
-├── embeddings/           # FAISS vector index files
+├── document_qa_demo.py   # Script you run inside VS Code
+├── data/                 # Raw documents (local PDFs)
+├── embeddings/           # FAISS index files
 ├── requirements.txt      # Python dependencies
 ├── README.md             # Project documentation
-├── venv/                 # Virtual environment (excluded from Git)
-└── .gitignore            # Git ignore rules
-```
-```
-📌 Architecture Overview
-                  ┌────────────────────┐
-                  │      PDF File      │
-                  └─────────┬──────────┘
-                            │ Extract text
-                            ▼
-                  ┌────────────────────┐
-                  │   Text Chunking    │
-                  │ (chunk + overlap)  │
-                  └─────────┬──────────┘
-                            │ Embed chunks
-                            ▼
-                  ┌────────────────────┐
-                  │   Embedding Model  │
-                  └─────────┬──────────┘
-                            │ Store vectors
-                            ▼
-                  ┌────────────────────┐
-                  │     FAISS Index     │
-                  └─────────┬──────────┘
-                            │ Retrieve top-K
-                            ▼
-                  ┌────────────────────┐
-                  │ Retrieved Context   │
-                  └─────────┬──────────┘
-                            │ Send to LLM
-                            ▼
-                  ┌────────────────────┐
-                  │     LLM Answer     │
-                  └────────────────────┘
-```
-                  
-```                
-🔁 RAG Workflow Diagram (Simple & Clear)
+├── screenshots/          # Added for project screenshots
+├── venv/                 # Virtual environment (ignored in Git)
+└── .gitignore            # Ignore rules
+
+
+## 🖼️ Screenshots  
+The project includes one demo screenshot that shows the final answer generated by the LLM during retrieval-based question answering.
+
+The image is placed inside the `screenshots/` folder.
+
+![Demo Output](./screenshots/gpt_transformer_answer.png)
+
+🧩 Architecture Overview
+PDF File
+   │ Extract text
+   ▼
+Text Chunking (chunk + overlap)
+   │ Embed chunks
+   ▼
+Embedding Model
+   │ Store vectors
+   ▼
+FAISS Index
+   │ Retrieve top-K
+   ▼
+Retrieved Context
+   │ Send to LLM
+   ▼
+LLM Answer
+
+🔁 RAG Workflow (Simple View)
 
 User Question
-      │
-      ▼
-Semantic Search (FAISS)
-      │
-      ▼
-Retrieve Relevant Chunks
-      │
-      ▼
-LLM + Retrieved Context
-      │
-      ▼
-Final Grounded Answer
-```
+→ Semantic Search (FAISS)
+→ Retrieve Relevant Chunks
+→ LLM + Context
+→ Final Answer
 
-##📝 Example Input / Output
+📝 Example I/O
+
 Input
-
 PDF: Insurance Claim Policy Document
-User Question:
+Question:
+
 “Is accidental damage covered under this policy?”
 
 Output
-Yes, accidental damage is covered. According to Section 2.1 of the policy,
-the plan includes coverage for accidental physical damage to the insured item,
-as long as the claim is filed within 30 days of the incident.
+Yes, accidental damage is covered. According to Section 2.1 of the policy, the plan includes coverage for accidental physical damage to the insured item, provided the claim is filed within 30 days of the incident.
+
+🔮 Future Enhancements
+
+Here are some improvements planned for the next version of this project:
+
+Web UI using Streamlit or FastAPI
+A clean interface where users can upload documents and ask questions without using the terminal.
+
+Multi-PDF support
+Ability to load multiple documents into a single FAISS index for cross-document querying.
+
+Larger context support
+Implementing sliding-window retrieval and re-ranking to handle long documents beyond the 1000-token limit.
+
+Advanced rerankers (BERT / Cross-Encoder)
+More accurate retrieval by adding a reranking model on top of FAISS.
+
+Metadata-based search
+Page numbers, headings, and timestamps included in search to improve context grounding.
+
+Support for scanned PDFs
+Automatic OCR integration for image-based documents.
+
+Caching layer
+Store previous answers to reduce LLM cost and speed up repeated queries.
+
+Docker containerization
+Run the entire pipeline anywhere with one command.
