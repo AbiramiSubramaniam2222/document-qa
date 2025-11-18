@@ -87,8 +87,8 @@ document-qa/
 ├── venv/                 # Virtual environment (excluded from Git)
 └── .gitignore            # Git ignore rules
 ```
-
-```📌 Architecture Overview
+```
+📌 Architecture Overview
                   ┌────────────────────┐
                   │      PDF File      │
                   └─────────┬──────────┘
