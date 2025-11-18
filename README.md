@@ -121,7 +121,7 @@ The project includes one demo screenshot that shows the final answer generated b
 
 The image is placed inside the `screenshots/` folder.
 
-![Demo Output](./Screenshot 2025-11-18 at 8.13.41 PM.png)
+![Demo Output](./screenshots/Screenshot_2025-11-18_at_8.13.41_PM.png)
 
 ```
 🧩 Architecture Overview
